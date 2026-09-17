@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -63,7 +64,31 @@ public class Account {
         this.balance = balance;
     }
 
-    //vytváření instancí TransferRec
-    //insertion
-    //withdrawal
+    public void insertBalance(int amount) {
+        if (this.type == AccountType.ACTIVE) {
+            this.setBalance(this.balance + amount);
+            LocalDateTime time = LocalDateTime.now();
+            Bank bank = this.getBank();
+            TransferRec record = new TransferRec(this, this, amount, time, TransferRecType.INSERTION);
+            bank.writeRecord(record);
+            System.out.println("Inserted " + amount + " Kč to " + this.getNameSurname());
+        }
+        else {
+            throw new IllegalStateException("Invalid transfer type");
+        }
+    }
+
+    public void Withdraw(int amount) {
+        if (this.type == AccountType.ACTIVE) {
+            this.setBalance(this.balance - amount);
+            LocalDateTime time = LocalDateTime.now();
+            Bank bank = this.getBank();
+            TransferRec record = new TransferRec(this, this, amount, time, TransferRecType.WITHDRAWAL);
+            bank.writeRecord(record);
+            System.out.println("Withdrawn " + amount + " Kč from " + this.getNameSurname());
+        }
+        else {
+            throw new IllegalStateException("Invalid transfer type");
+        }
+    }
 }
