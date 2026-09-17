@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Account {
     private Bank bank;
@@ -20,7 +21,20 @@ public class Account {
         this.balance = balance;
 
         Random rand = new Random();
-        //dodělat atributy banky pro pokračování
+        int accNum;
+        boolean exists = false;
+        do {
+            accNum = rand.nextInt(99999 - 10000 + 1) + 10000;
+
+            for (Account acc : bank.getAccounts()) {
+                if (Integer.parseInt(acc.getAccountNumber()) == accNum) {
+                    exists = true;
+                    break;
+                }
+            }
+
+        } while (exists);
+        this.accountNumber = String.valueOf(accNum);
 
     }
 
@@ -29,5 +43,20 @@ public class Account {
     }
     public String getNameSurname() {
         return nameSurname;
+    }
+    public LocalDate getBornDate() {
+        return bornDate;
+    }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+    public AccountType getType() {
+        return type;
+    }
+    public int getBalance() {
+        return balance;
     }
 }
