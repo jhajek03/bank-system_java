@@ -23,7 +23,7 @@ public class Bank {
         history.listUserRecords(account);
     }
 
-    //vytváření instancí TransferRec
-    //insertion
-    //withdrawal
+    public void writeRecord(TransferRec record) {
+        history.writeRecord(record);
+    }
 }

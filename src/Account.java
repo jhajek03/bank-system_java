@@ -59,4 +59,11 @@ public class Account {
     public int getBalance() {
         return balance;
     }
+    protected void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    //vytváření instancí TransferRec
+    //insertion
+    //withdrawal
 }

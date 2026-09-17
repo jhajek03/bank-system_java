@@ -19,9 +19,9 @@ public class RecordHistory {
             if (!record.from().equals(account.getNameSurname()) && !record.to().equals(account.getNameSurname())) {
                 userRecords.remove(record);
             }
-            else {
-                System.out.println(record.toString());
-            }
+        }
+        for (TransferRec record : userRecords) {
+            System.out.println(record.toString());
         }
     }
 }
